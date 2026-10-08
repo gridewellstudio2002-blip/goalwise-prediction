@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalWise Predictions - Accurate Football Predictions Daily</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-futbol accent-icon"></i> Goal<span>Wise</span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#predictions" class="nav-link">Predictions</a>
+                <a href="#livescores" class="nav-link">Livescores</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#vip" class="nav-link vip-link"><i class="fa-solid fa-crown"></i> VIP</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="registerBtn">Register</button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge"><i class="fa-solid fa-fire"></i> Daily Live Automated Feed</span>
+                <h1>Accurate Football Predictions Daily</h1>
+                <p>Maximize your winning chances with automated daily fixture feeds, algorithm analysis, and expert football betting tips.</p>
+                <div class="hero-buttons">
+                    <a href="#predictions" class="btn btn-primary btn-lg"><i class="fa-solid fa-bolt"></i> View Today's Tips</a>
+                    <a href="#vip" class="btn btn-secondary btn-lg"><i class="fa-solid fa-crown"></i> Join VIP Club</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="match-highlight">
+                    <span class="live-badge"><i class="fa-solid fa-circle"></i> FEATURED MATCH</span>
+                    <div class="teams" id="featuredMatchTeams">
+                        <div class="team">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span id="featuredHome">Real Madrid</span>
+                        </div>
+                        <span class="vs">VS</span>
+                        <div class="team">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span id="featuredAway">Barcelona</span>
+                        </div>
+                    </div>
+                    <div class="prediction-highlight">
+                        <span class="label">Tip of the Day:</span>
+                        <span class="value" id="featuredTip">Over 2.5 Goals</span>
+                    </div>
+                    <div class="odds-highlight">
+                        <span>Odds: <strong id="featuredOdds">1.85</strong></span>
+                        <span class="confidence"><i class="fa-solid fa-check-circle"></i> <span id="featuredConfidence">92%</span> Confidence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <i class="fa-solid fa-trophy"></i>
+                <div>
+                    <h3 class="stat-number">85%</h3>
+                    <p class="stat-label">Win Rate</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <div>
+                    <h3 class="stat-number">1,200+</h3>
+                    <p class="stat-label">Tips Monthly</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-users"></i>
+                <div>
+                    <h3 class="stat-number">50,000+</h3>
+                    <p class="stat-label">Active Users</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-star"></i>
+                <div>
+                    <h3 class="stat-number">4.9/5</h3>
+                    <p class="stat-label">User Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Today's Predictions Table Section -->
+    <section class="predictions-section" id="predictions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Matches & Predictions</h2>
+                <p>Select a date to view automatically updated daily fixtures</p>
+            </div>
+
+            <!-- Date Selector & Search Bar -->
+            <div class="date-selector-bar">
+                <button class="date-btn" id="yesterdayBtn"><i class="fa-solid fa-chevron-left"></i> Yesterday</button>
+                <button class="date-btn active" id="todayBtn">Today (<span id="currentDateLabel"></span>)</button>
+                <button class="date-btn" id="tomorrowBtn">Tomorrow <i class="fa-solid fa-chevron-right"></i></button>
+                <input type="date" id="datePicker" class="custom-date-picker">
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search team or league...">
+                </div>
+                <div class="filter-buttons" id="leagueFilters">
+                    <button class="filter-btn active" data-filter="all">All Leagues</button>
+                    <button class="filter-btn" data-filter="Premier League">Premier League</button>
+                    <button class="filter-btn" data-filter="La Liga">La Liga</button>
+                    <button class="filter-btn" data-filter="Champions League">Champions League</button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="predictions-table" id="predictionsTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="league">League <i class="fa-solid fa-sort"></i></th>
+                            <th data-sort="time">Time <i class="fa-solid fa-sort"></i></th>
+                            <th data-sort="match">Match <i class="fa-solid fa-sort"></i></th>
+                            <th data-sort="prediction">Prediction <i class="fa-solid fa-sort"></i></th>
+                            <th data-sort="odds">Odds <i class="fa-solid fa-sort"></i></th>
+                            <th>Status / Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Populated dynamically via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Prediction Categories</h2>
+                <p>Select your preferred betting market style</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="cat-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <h3>1X2 Predictions</h3>
+                    <p>Home win, Draw, or Away win recommendations based on team form.</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Double Chance</h3>
+                    <p>Safer options covering two of the three possible outcomes.</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon"><i class="fa-solid fa-futbol"></i></div>
+                    <h3>Over/Under</h3>
+                    <p>Total goals predictions for high and low scoring encounters.</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    <h3>BTTS (Both Teams To Score)</h3>
+                    <p>Analysis on defensive stability and attacking efficiency.</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Correct Score</h3>
+                    <p>High-odds exact score predictions generated by statistical models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose GoalWise</h2>
+                <p>We combine advanced analytics with expert insider knowledge</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fa-solid fa-microchip feature-icon"></i>
+                    <h3>AI Data Analysis</h3>
+                    <p>Our machine learning models analyze team metrics, weather, and injury news.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-user-check feature-icon"></i>
+                    <h3>Verified Experts</h3>
+                    <p>Professional tipsters with proven long-term profitability records.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-clock feature-icon"></i>
+                    <h3>Daily Updates</h3>
+                    <p>Fresh tips uploaded daily before matchday preparations begin.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-brands fa-whatsapp feature-icon"></i>
+                    <h3>Instant WhatsApp Alerts</h3>
+                    <p>Get immediate notifications for high-value VIP tips on mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP Subscription Banner -->
+    <section class="vip-banner" id="vip">
+        <div class="container">
+            <div class="vip-content">
+                <span class="vip-badge"><i class="fa-solid fa-crown"></i> Premium Access</span>
+                <h2>Unlock High-Odds VIP Predictions</h2>
+                <p>Join thousands of successful bettors getting daily high-confidence tickets, banker bets, and exclusive WhatsApp group access.</p>
+                <div class="vip-features-list">
+                    <span><i class="fa-solid fa-check"></i> 90%+ Target Win Rate</span>
+                    <span><i class="fa-solid fa-check"></i> High odds 5.00+ tickets</span>
+                    <span><i class="fa-solid fa-check"></i> Direct WhatsApp alerts</span>
+                </div>
+                <button class="btn btn-primary btn-lg"><i class="fa-solid fa-rocket"></i> Get VIP Pass Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeLogin"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <h3>Welcome Back</h3>
+                <p>Log in to access your saved predictions and VIP area</p>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="e.g. user@gmail.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Enter password" required>
+                    </div>
+                </div>
+                <div class="form-actions-row">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                <p class="modal-switch">Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeRegister"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <h3>Create an Account</h3>
+                <p>Join GoalWise for daily accurate betting insights</p>
+            </div>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regName">Full Name</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="regName" placeholder="John Doe" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="regEmail" placeholder="e.g. user@gmail.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">WhatsApp Number</label>
+                    <div class="input-wrapper">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <input type="tel" id="regPhone" placeholder="+123 456 7890" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="regPassword" placeholder="Create password" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create Free Account</button>
+                <p class="modal-switch">Already registered? <a href="#" id="switchToLogin">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-futbol accent-icon"></i> Goal<span>Wise</span>
+                </a>
+                <p>Your ultimate destination for reliable football statistics, betting insights, and match predictions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Today's Predictions</a></li>
+                    <li><a href="#">VIP Tips</a></li>
+                    <li><a href="#">Livescore</a></li>
+                    <li><a href="#">Betting Strategies</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Leagues</h4>
+                <ul>
+                    <li><a href="#">English Premier League</a></li>
+                    <li><a href="#">Spanish La Liga</a></li>
+                    <li><a href="#">UEFA Champions League</a></li>
+                    <li><a href="#">Italian Serie A</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Disclaimer</h4>
+                <p class="disclaimer-text">GoalWise offers predictions and statistics. We do not guarantee profits and urge all users to gamble responsibly (18+).</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 GoalWise Predictions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
